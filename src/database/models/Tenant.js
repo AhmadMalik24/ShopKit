@@ -78,6 +78,25 @@ Tenant.associate = (models) => {
         foreignKey: 'tenant_id',
         as: 'users',
     });
+    Tenant.hasMany(models.Block, {
+        foreignKey: 'tenant_id',
+        as: 'blocks',
+    });
+    Tenant.belongsTo(models.Template, {
+        foreignKey: 'template_id',
+        as: 'template',
+    });
+    Tenant.hasMany(models.Product, {
+        foreignKey: 'tenant_id', as: 'products'
+    });
+    Tenant.hasMany(models.Order, {
+        foreignKey: 'tenant_id',
+        as: 'orders',
+    });
+    Tenant.belongsTo(models.User, {
+        foreignKey: 'owner_id',
+        as: 'owner',       // ← this is what the service queries
+    });
 };
 
 export default Tenant;

@@ -1,41 +1,39 @@
-// src/database/models/Product.js
+// src/database/models/Template.js
 import pkg from 'sequelize';
 const { DataTypes } = pkg;
 import sequelize from '../connection/index.js';
 
-const Product = sequelize.define(
-    'Product',
+const Template = sequelize.define(
+    'Template',
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        tenant_id: {
-            type: DataTypes.UUID,
-            allowNull: false,
-        },
         name: {
             type: DataTypes.STRING(255),
             allowNull: false,
+        },
+        slug: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
+            unique: true,
         },
         description: {
             type: DataTypes.TEXT,
             allowNull: true,
         },
-        price: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false,
-        },
-        image_urls: {
-            type: DataTypes.JSONB,
-            defaultValue: [],
-        },
         category: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(50),
+            allowNull: false,
+            defaultValue: 'general',
+        },
+        preview_image_url: {
+            type: DataTypes.TEXT,
             allowNull: true,
         },
-        is_available: {
+        is_active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },
@@ -43,23 +41,24 @@ const Product = sequelize.define(
             type: DataTypes.INTEGER,
             defaultValue: 0,
         },
+        blocks: {
+            type: DataTypes.JSONB,
+            allowNull: false,
+            defaultValue: [],
+        },
     },
     {
-        tableName: 'products',
+        tableName: 'templates',
         timestamps: true,
         underscored: true,
     }
 );
 
-Product.associate = (models) => {
-    Product.belongsTo(models.Tenant, {
-        foreignKey: 'tenant_id',
-        as: 'tenant',
+Template.associate = (models) => {
+    Template.hasMany(models.Tenant, {
+        foreignKey: 'template_id',
+        as: 'tenants',
     });
-    Product.hasMany(models.OrderItem, {   // ← add this back
-    foreignKey: 'product_id',
-    as: 'orderItems',
-  });
 };
 
-export default Product;
+export default Template;
