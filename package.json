@@ -1,0 +1,40 @@
+{
+  "name": "shopkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon server.js",
+    "migrate": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations db:migrate",
+    "migrate:undo": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations db:migrate:undo",
+    "migrate:status": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations db:migrate:status",
+    "migrate:generate": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations migration:generate --name"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "joi": "^18.2.9",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.4.0",
+    "node": "^26.8.2",
+    "nodemon": "^3.1.14",
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.8",
+    "stripe": "^22.6.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "sequelize-cli": "^6.6.5"
+  }
+}
