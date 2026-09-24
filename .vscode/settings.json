@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.dockerignore": "plaintext",
+    ".dockerignore": "plaintext",
+    ".env*": "dotenv"
+  }
+}

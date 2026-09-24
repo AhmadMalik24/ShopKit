@@ -14,8 +14,24 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/api', routes);
 
-app.get('/health', (req, res) => {
-  res.status(200).json({ message: 'Server is healthy' });
+app.get('/health', async (req, res) => {
+  const health = {
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    checks: {},
+  };
+
+  try {
+    await sequelize.authenticate();
+    health.checks.database = 'ok';
+  } catch (err) {
+    health.checks.database = 'error';
+    health.status = 'degraded';
+  }
+
+  const statusCode = health.status === 'ok' ? 200 : 503;
+  res.status(statusCode).json(health);
 });
 
 const start = async () => {
