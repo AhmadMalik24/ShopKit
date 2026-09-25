@@ -33,5 +33,8 @@ export const updateOrderStatusSchema = Joi.object({
       'delivered',
       'cancelled'
     )
-    .required(),
+    .required()
+    .messages({
+      'any.only': 'Status must be one of: pending, confirmed, preparing, out_for_delivery, delivered, cancelled',
+    }),
 });

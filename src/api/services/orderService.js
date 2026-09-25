@@ -3,6 +3,13 @@ import models, { sequelize } from '../../database/models/index.js';
 
 const { Order, OrderItem, Product, Tenant } = models;
 
+import {
+    isValidTransition,
+    getAllowedNextStatuses,
+    isFinalStatus,
+} from '../constant/orderStatusFlow.js';
+
+
 /**
  * Generate a unique order number like "SK-94021"
  */
@@ -136,15 +143,34 @@ export async function getOrderById(tenantId, orderId) {
 /**
  * Store owner — update order status
  */
+// src/api/services/orderService.js
+
 export async function updateOrderStatus(tenantId, orderId, status) {
     const order = await Order.findOne({
         where: { id: orderId, tenant_id: tenantId },
     });
     if (!order) throw new Error('Order not found');
 
+    // 1. Block changes on final orders
+    if (isFinalStatus(order.status)) {
+        throw new Error(
+            `Order is "${order.status}" and cannot be changed further.`
+        );
+    }
+
+    // 2. Block invalid transitions
+    if (!isValidTransition(order.status, status)) {
+        const allowed = getAllowedNextStatuses(order.status);
+        throw new Error(
+            `Invalid status transition: "${order.status}" → "${status}". ` +
+            `Allowed next statuses: ${allowed.length ? allowed.join(', ') : 'none'}.`
+        );
+    }
+
+    // 3. Apply the status change
     await order.update({ status });
 
-    // If marked delivered, mark payment as paid
+    // 4. Side effects
     if (status === 'delivered' && order.payment_method === 'cod') {
         await order.update({ payment_status: 'paid' });
     }
