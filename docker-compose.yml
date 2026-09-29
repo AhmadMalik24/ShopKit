@@ -15,6 +15,11 @@ services:
       JWT_REFRESH_SECRET: 7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f6e
       JWT_ACCESS_TOKEN_EXPIRE: 2m
       JWT_REFRESH_TOKEN_EXPIRE: 7d
+
+      SUPABASE_URL: https://ddfzyqsldyfccayzxmuj.supabase.co
+      SUPABASE_SERVICE_ROLE_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZnp5cXNsZHlmY2NheXp4bXVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDU3MDkxNywiZXhwIjoyMTA2MTQ2OTE3fQ.TbUQjdouG08eXitI29WrJr7cb-DhgSolJA-eaXXFeVQ
+      SUPABASE_STORAGE_BUCKET: shopkit-media
+
     depends_on:
       db:
         condition: service_healthy

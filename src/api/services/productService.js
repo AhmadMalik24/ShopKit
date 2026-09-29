@@ -1,6 +1,6 @@
 // src/api/services/productService.js
 import models from '../../database/models/index.js';
-
+import { deleteFile } from './uploadService.js';
 const { Product } = models;
 
 export async function listProducts(tenantId) {
@@ -61,6 +61,13 @@ export async function deleteProduct(tenantId, productId) {
     where: { id: productId, tenant_id: tenantId },
   });
   if (!product) throw new Error('Product not found');
+
+  // Delete the product's images from Supabase Storage
+  for (const imageUrl of product.image_urls) {
+    //const path = imageUrl.split('/').pop();
+    console.log(`Deleting image from Supabase: ${imageUrl}`);
+    await deleteFile(imageUrl);
+  }
 
   await product.destroy();
   return { success: true };
