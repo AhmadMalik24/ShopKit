@@ -1,0 +1,7 @@
+supabase shopkit project password = e6.scmy4.wwtH?S
+
+supabase project url = https://ddfzyqsldyfccayzxmuj.supabase.co
+
+public key = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZnp5cXNsZHlmY2NheXp4bXVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA1NzA5MTcsImV4cCI6MjEwNjE0NjkxN30.Q7Z69UBKieOlawVU1OuQV1PJEAAIgjw3S2ljHH5P_8w
+
+service_role|| secret key = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZnp5cXNsZHlmY2NheXp4bXVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDU3MDkxNywiZXhwIjoyMTA2MTQ2OTE3fQ.TbUQjdouG08eXitI29WrJr7cb-DhgSolJA-eaXXFeVQ

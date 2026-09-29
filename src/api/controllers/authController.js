@@ -29,14 +29,14 @@ async function register(req, res) {
         },
         tenant: tenant
           ? {
-              id: tenant.id,
-              name: tenant.name,
-              slug: tenant.slug,
-              primary_color: tenant.primary_color,
-              secondary_color: tenant.secondary_color,
-              custom_domain: tenant.custom_domain,
-              logo_url: tenant.logo_url,
-            }
+            id: tenant.id,
+            name: tenant.name,
+            slug: tenant.slug,
+            primary_color: tenant.primary_color,
+            secondary_color: tenant.secondary_color,
+            custom_domain: tenant.custom_domain,
+            logo_url: tenant.logo_url,
+          }
           : null,
       },
       error: null,
@@ -73,14 +73,14 @@ async function login(req, res) {
         },
         tenant: tenant
           ? {
-              id: tenant.id,
-              name: tenant.name,
-              slug: tenant.slug,
-              primary_color: tenant.primary_color,
-              secondary_color: tenant.secondary_color,
-              custom_domain: tenant.custom_domain,
-              logo_url: tenant.logo_url,
-            }
+            id: tenant.id,
+            name: tenant.name,
+            slug: tenant.slug,
+            primary_color: tenant.primary_color,
+            secondary_color: tenant.secondary_color,
+            custom_domain: tenant.custom_domain,
+            logo_url: tenant.logo_url,
+          }
           : null,
       },
       error: null,
@@ -108,7 +108,7 @@ async function refreshToken(req, res) {
     setRefreshCookie(res, result.refreshToken);
     return res.status(200).json({
       success: true,
-      data: { accessToken: result.accessToken },
+      accessToken: result.accessToken,
       error: null,
     });
   } catch (error) {
@@ -170,14 +170,14 @@ async function me(req, res) {
         },
         tenant: tenant
           ? {
-              id: tenant.id,
-              name: tenant.name,
-              slug: tenant.slug,
-              primary_color: tenant.primary_color,
-              secondary_color: tenant.secondary_color,
-              custom_domain: tenant.custom_domain,
-              logo_url: tenant.logo_url,
-            }
+            id: tenant.id,
+            name: tenant.name,
+            slug: tenant.slug,
+            primary_color: tenant.primary_color,
+            secondary_color: tenant.secondary_color,
+            custom_domain: tenant.custom_domain,
+            logo_url: tenant.logo_url,
+          }
           : null,
       },
       error: null,
