@@ -9,6 +9,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon server.js",
+    "test:dev": "./tests/smoke-test.sh http://localhost:3000",
+  "test:prod": "./tests/smoke-test.sh https://shopkit-production.up.railway.app",
     "migrate": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations db:migrate",
     "migrate:undo": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations db:migrate:undo",
     "migrate:status": "sequelize-cli --config src/database/config.cjs --migrations-path src/database/migrations db:migrate:status",
