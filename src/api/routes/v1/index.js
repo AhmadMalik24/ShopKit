@@ -8,11 +8,12 @@ import publicRoutes from './publicRoutes.js';
 import productRoutes from './productRoutes.js';
 import orderRoutes from './orderRoutes.js';
 import uploadRoutes from './uploadRoutes.js';
-
+import oauthRoutes from './oauthRoutes.js';
 
 const router = express.Router();
 
 router.use('/auth', authRoutes);
+router.use('/auth', oauthRoutes);
 router.use('/templates', templateRoutes);
 router.use('/tenants', tenantRoutes);
 router.use('/blocks', blockRoutes);

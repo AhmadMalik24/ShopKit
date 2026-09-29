@@ -25,11 +25,21 @@ const User = sequelize.define(
         },
         password_hash: {
             type: DataTypes.STRING(255),
-            allowNull: false,
+            allowNull: true,
         },
         name: {
             type: DataTypes.STRING(255),
             allowNull: false,
+        },
+        google_id: {
+            type: DataTypes.STRING(255),
+            allowNull: true,
+            unique: true,
+        },
+
+        avatar_url: {
+            type: DataTypes.TEXT,
+            allowNull: true,
         },
         role: {
             type: DataTypes.ENUM('super_admin', 'store_owner', 'customer'),
