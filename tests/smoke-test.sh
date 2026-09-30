@@ -317,7 +317,7 @@ section "11. Rate Limiting — Global Headers"
 # ─────────────────────────────────────────────────────
 
 HEADERS=$(curl -s -i "$API/templates" 2>&1)
-if echo "$HEADERS" | grep -q "RateLimit:"; then
+if echo "$HEADERS" | grep -iq "RateLimit:"; then
   pass "Global limiter sends RateLimit header"
 else
   fail "Global limiter header missing"
